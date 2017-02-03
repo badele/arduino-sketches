@@ -1,20 +1,10 @@
-// define some values used by the panel and buttons
-int lcd_key     = 0;
-int adc_key_in  = 0;
-#define btnRIGHT  0
-#define btnUP     1
-#define btnDOWN   2
-#define btnLEFT   3
-#define btnSELECT 4
-#define btnNONE   5
-
 // HC-SR04
 int trig = 41;
 int echo = 39;
 long duration;
 float distance;
 
-const int bufferSize = 50;
+const int bufferSize = 20;
 float readings[bufferSize];
 int currentIndex = 0;
 int total = 0;
@@ -56,16 +46,10 @@ float read_distances() {
   for (int i=0; i < bufferSize; i++){
     float value = readings[i];
     total += value;
-    Serial.println(value);
+    Serial.print(value);
+    Serial.print("\t");
   }
-
-  float average = total / float(bufferSize);
-  Serial.println("===");
-  Serial.println(average);
-  Serial.println("===");
-  Serial.println("");
-  Serial.println("");
-  Serial.println("");
+  Serial.println();
 
   return average;
 }
